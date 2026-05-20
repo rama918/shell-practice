@@ -27,20 +27,20 @@ then
     echo -e "Installing $2 is ... $G SUCCESS $N" | tee -a $LOG_FILE
 else
     echo -e "Installing $2 is ... $G FAILURE $N" | tee -a $LOG_FILE
-    
+    exit 1
 fi
     }
 
 for package in ${PACKAGES[@]}
 do
-dnf list installed package &>>$LOG_FILE
+dnf list installed $package &>>$LOG_FILE
  if [ $? -ne 0 ]
 then
-    echo "package is not installed... going to install it" | tee -a $LOG_FILE
-    dnf install package -Y &>>$LOG_FILE
+    echo "$package is not installed... going to install it" | tee -a $LOG_FILE
+    dnf install $package -Y &>>$LOG_FILE
     VALIDATE $? "$package"
 else
-    echo -e "nothing to do package... $Y already installed $N " | tee -a $LOG_FILE
+    echo -e "nothing to do $package... $Y already installed $N " | tee -a $LOG_FILE
     
 fi
 done
