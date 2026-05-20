@@ -32,7 +32,7 @@ fi
     }
 
 for package in ${PACKAGES[@]}
-DO
+do
 dnf list installed package &>>$LOG_FILE
  if [ $? -ne 0 ]
 then
