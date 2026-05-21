@@ -2,4 +2,4 @@
 
 echo "PID of the script-2 is: $$"
 
-echo "$Greeting"
+echo "$GREETING"
